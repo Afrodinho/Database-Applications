@@ -1,0 +1,37 @@
+db.collection.find({query filter criteria},{display key values})
+
+db.zips.find({"state":"MO"},{"city": 1, "state": 1})
+
+db.zips.find({$or:[{"state": "MO"}, {"state": "FL"}, {"state": "IA"}, {"state": "KS"}]}, {"_id": 1, "city": 1, "state": 1})
+
+db.zips.find({$and:[{"pop":{$lte:2000}}, {"state": "OH"}]}, {"city": 1, "state": 1, "pop": 1})
+
+db.zips.find({"pop":{$gte:50000}}, {"_id": 1, "city": 1, "pop": 1, "state": 1})
+
+db.zips.find({$and:[{"state":"MO"}, {"city": "COLUMBIA"}]}, {"city": 1, "state": 1})
+
+db.zips.find({"state":"MO"}, {"_id": 1, "pop": 1, "state": 1})
+
+db.zips.find({"city":"SPRINGFIELD"}, {"_id": 1, "state": 1, "city": 1})
+
+db.zips.find({"city":"SPRINGFIELD"}, {"city": 1}).count()
+
+db.zips.find({"city":"EMERALD"}, {"_id": 1, "state": 1, "city": 1, "pop": 1})
+
+db.zips.find({"pop":{$eq:10}}, {"_id": 1, "state": 1, "city": 1, "pop": 1})
+
+db.stocks.find({}, {"_id": 0,}).pretty()
+
+db.stocks.find({"Sector": "Information Technology"},{"_id": 0,"Name": 1,"Symbol": 1})
+
+db.stocks.find({$and:[{"Price":{$gt:75}}, {"Sector": "Financials"}]}, {"_id": 0,"Name": 1,"Symbol": 1, "Price": 1})
+
+db.stocks.find({"EBITDA":{gte:2500000000}}, {"_id": 0,"Name": 1, "Sector": 1, "EBITDA": 1})
+
+db.stocks.find({"52 Week High":{gte:150}}, {"_id": 0,"Name": 1, "Sector": 1, "Symbol": 1})
+
+db.stocks.find({$and:[{"Price":{lt:50}}, {"Sector":"Real Estate"}]}, {"_id": 0,"Name": 1, "Symbol": 1, "Price": 1})
+
+db.stocks.find({$or:[{"Sector":"Utilities"}, {"Sector":"Industrials"}]}, {"_id": 0,"Name": 1,"Symbol": 1, "Dividend Yield": 1})
+
+db.stocks.find({$or[{"Dividend Yield":{gt:3}}, {"Price/Earnings":{lt:1}]}, {"_id": 0,"Name": 1,"Symbol": 1, "Market Cap": 1})
